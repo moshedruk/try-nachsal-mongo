@@ -17,3 +17,8 @@ const onlySellersAndCommanders = async (req,res,next) => {
     catch(err){        
     }
 };
+
+module.exports ={
+    onlyCommaders,
+    onlySellersAndCommanders,    
+ };
