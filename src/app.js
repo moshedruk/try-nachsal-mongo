@@ -4,10 +4,12 @@ const exp = require('express');
 const auth = require('./routes/authRouter');
 const user = require('./routes/userRouter');
 const greenEye = require('./routes/greenEetRouter');
+const { connectToMongo } = require('./config/dbConfig');
 
 const app = exp();
 dotenv.config();
 app.use(cors());
+connectToMongo()
 const port  = process.env.PORT
 
 
