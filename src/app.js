@@ -5,6 +5,7 @@ const auth = require('./routes/authRouter');
 const user = require('./routes/userRouter');
 const greenEye = require('./routes/greenEetRouter');
 const { connectToMongo } = require('./config/dbConfig');
+const cookieParser = require('cookie-parser');
 
 const app = exp();
 dotenv.config();
@@ -14,6 +15,7 @@ const port  = process.env.PORT
 
 
 app.use(exp.json())
+app.use(cookieParser())
 
 // Routes
 app.use('/auth', auth)
