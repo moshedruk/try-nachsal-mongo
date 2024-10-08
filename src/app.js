@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const cors = require('cors');
 const exp = require('express');
+const { specs, swaggerUi } = require('./config/swagger');
 const auth = require('./routes/authRouter');
 const user = require('./routes/userRouter');
 const greenEye = require('./routes/greenEetRouter');
@@ -16,6 +17,7 @@ const port  = process.env.PORT
 
 app.use(exp.json())
 app.use(cookieParser())
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 
 // Routes
 app.use('/auth', auth)

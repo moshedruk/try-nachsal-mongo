@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const { UserModle } = require('../models/userModel')
 const createUser = async (user)=>{
     try{
+        console.log(user + ' created');
        const {user_name,password,role,area,units} = user
        const hashPassword = await bcrypt.hash(password,10)
        const dbUser = new UserModle({

@@ -1,6 +1,7 @@
 const {createUser} = require('../services/userService');
-const register = async(req,res)=>{
 
+// Function for creating a new user in the database
+const register = async(req,res)=>{
     try{
        await createUser(req.body)
        res.status(201).json({msg:'User created successfully'});

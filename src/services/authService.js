@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const login = async(user)=> {
     try {
+         console.log(user);
         const dbUser = await UserModle.findOne({user_name: user.user_name})
         if (!dbUser) throw new Error('User not found');
         if(!await bcrypt.compare(user.password, dbUser.password)){
@@ -22,4 +23,5 @@ const login = async(user)=> {
         
     }
 }
+
 module.exports = {login};
