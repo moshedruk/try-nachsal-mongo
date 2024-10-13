@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken");
 // Middleware for validating if user is a commander
 const onlyCommaders = async (req,res,next) => {
     try{
-        const token = req.cookie.token  
+          // This will print out the cookies sent with the request.
+        const token = req.headers.authorization?.split(' ')[1];
+        console.log(token);
         const userData =  jwt.verify(token,process.env.SECRET_KEY);
         if(userData.role!=="commander"){
             return res.status(403).json({message: 'You are not a commander'})

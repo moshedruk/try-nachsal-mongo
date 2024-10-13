@@ -3,8 +3,9 @@ const {createUser} = require('../services/userService');
 // Function for creating a new user in the database
 const register = async(req,res)=>{
     try{
-       await createUser(req.body)
-       res.status(201).json({msg:'User created successfully'});
+       const newUser =  await createUser(req.body)
+       console.log(newUser.role);
+       res.status(201).json({user: newUser,msg:'User created successfully'});
        
     }catch(err){
         res.status(400).json({msg:err.message});

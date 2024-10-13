@@ -5,17 +5,17 @@ const jwt = require('jsonwebtoken');
 
 const login = async(user)=> {
     try {
-         console.log(user);
         const dbUser = await UserModle.findOne({user_name: user.user_name})
         if (!dbUser) throw new Error('User not found');
         if(!await bcrypt.compare(user.password, dbUser.password)){
             throw new Error('Invalid password');
         }
-        const tocken = await jwt.sign({user_name: dbUser.user_name, role: dbUser.role}
+        const token = await jwt.sign({id:dbUser._id, user_name: dbUser.user_name, role: dbUser.role}
             ,process.env.SECRET_KEY,
             { expiresIn: '3m' }
         );
-        return tocken;
+        
+        return { token, user: dbUser };
 
     } catch (err) {
         console.log(err);

@@ -13,6 +13,7 @@ const createUser = async (user)=>{
         units
        });
        await dbUser.save()
+        return user;
     }catch(err){
         console.log(err);
        throw err
